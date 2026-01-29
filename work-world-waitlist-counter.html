@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Work World — Waitlist</title>
+  <style>
+    :root{--bg:#0b0b0f;--card:#12121a;--text:#f4f4f7;--muted:#b7b7c7;--gold:#d6b35a;--stroke:#222233;}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:radial-gradient(1200px 800px at 50% 0%, #151525 0%, var(--bg) 50%);
+    }
+    .wrap{width:min(680px,92vw);padding:28px 0}
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      padding:26px;
+      box-shadow:0 12px 60px rgba(0,0,0,.55);
+    }
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid rgba(214,179,90,.35);
+      color:var(--gold);
+      border-radius:999px;
+      font-weight:900;
+      letter-spacing:1px;
+      font-size:12px;
+    }
+    .countbox{
+      border:1px solid var(--stroke);
+      border-radius:14px;
+      padding:10px 12px;
+      background:#0f0f16;
+      min-width:190px;
+      text-align:right;
+    }
+    .countlabel{font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.8px}
+    .countnum{font-size:26px;font-weight:950;line-height:1.1}
+    h1{margin:10px 0 8px;font-size:34px;letter-spacing:1px}
+    p{margin:0 0 18px;color:var(--muted);line-height:1.55}
+    .line{display:block;margin-top:8px;color:rgba(214,179,90,.9)}
+    .form{margin-top:14px}
+    label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input{
+      width:100%;
+      padding:14px 12px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background:#0f0f16;
+      color:var(--text);
+      outline:none;
+      font-size:16px;
+    }
+    input:focus{border-color:rgba(214,179,90,.6)}
+    button{
+      margin-top:12px;
+      width:100%;
+      padding:14px 12px;
+      border-radius:12px;
+      border:0;
+      background:var(--gold);
+      color:#12121a;
+      font-weight:950;
+      letter-spacing:.5px;
+      cursor:pointer;
+    }
+    button:disabled{opacity:.7;cursor:not-allowed}
+    .msg{margin:10px 0 0;min-height:18px;color:var(--muted);font-size:13px}
+    .row{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    @media (min-width: 560px){
+      .row{grid-template-columns: 1fr 1fr;}
+    }
+    .discord{
+      display:inline-block;
+      margin-top:14px;
+      width:100%;
+      text-align:center;
+      padding:14px 12px;
+      border-radius:12px;
+      border:1px solid rgba(214,179,90,.35);
+      color:var(--text);
+      text-decoration:none;
+      font-weight:900;
+    }
+    .discord:hover{border-color:rgba(214,179,90,.75)}
+    .fineprint{margin-top:12px;font-size:12px;color:rgba(255,255,255,.55)}
+    .hp{display:none}
+    .foot{margin-top:18px;color:rgba(255,255,255,.5);font-size:12px}
+    code{color:rgba(214,179,90,.95)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card">
+      <div class="top">
+        <div class="badge">FOUNDING CLASS</div>
+        <div class="countbox" title="This is a live count of people who clicked Join.">
+          <div class="countlabel">PEOPLE ON WAITLIST</div>
+          <div class="countnum"><span id="count">—</span></div>
+        </div>
+      </div>
+
+      <h1>THE WORK WORLD IS COMING.</h1>
+      <p>
+        The private system for men who want skill, money, and freedom.
+        <span class="line">First 1,000 get early access + perks.</span>
+      </p>
+
+      <form id="waitlist" class="form" autocomplete="off">
+        <!-- Honeypot to reduce bot spam -->
+        <div class="hp">
+          <label>Website</label>
+          <input id="website" name="website" autocomplete="off" />
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="email">Email (for priority access)</label>
+            <input id="email" name="email" type="email" placeholder="you@domain.com" required />
+          </div>
+          <div>
+            <label for="src">Where did you find us?</label>
+            <input id="src" name="src" type="text" placeholder="TikTok / IG / YouTube" />
+          </div>
+        </div>
+
+        <button id="btn" type="submit">JOIN THE WAITLIST</button>
+        <p class="msg" id="msg" aria-live="polite"></p>
+
+        <div class="fineprint">
+          This page counts joins to measure demand. (We’re not emailing yet — no spam.)
+        </div>
+      </form>
+
+      <a class="discord" href="https://discord.gg/9GPtCBr7" target="_blank" rel="noopener">
+        ENTER THE DISCORD
+      </a>
+
+      <footer class="foot">
+        Admin note: The counter key is <code>theworkworld_waitlist</code>. If you ever want a fresh count, change that key.
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Counter API (no signup). Docs: https://countapi.mileshilliard.com/
+    const COUNTER_KEY = "theworkworld_waitlist";
+    const API_BASE = "https://countapi.mileshilliard.com/api/v1";
+    const elCount = document.getElementById("count");
+    const form = document.getElementById("waitlist");
+    const emailEl = document.getElementById("email");
+    const srcEl = document.getElementById("src");
+    const msg = document.getElementById("msg");
+    const btn = document.getElementById("btn");
+    const hp = document.getElementById("website");
+
+    function setMsg(t) { msg.textContent = t; }
+
+    async function getCount() {
+      // If key doesn't exist yet, it returns 404. We'll initialize to 0 once.
+      const res = await fetch(`${API_BASE}/get/${encodeURIComponent(COUNTER_KEY)}`);
+      if (res.status === 404) {
+        await fetch(`${API_BASE}/set/${encodeURIComponent(COUNTER_KEY)}?value=0`);
+        const res2 = await fetch(`${API_BASE}/get/${encodeURIComponent(COUNTER_KEY)}`);
+        const j2 = await res2.json();
+        return Number(j2.value || 0);
+      }
+      const j = await res.json();
+      return Number(j.value || 0);
+    }
+
+    async function hit() {
+      const res = await fetch(`${API_BASE}/hit/${encodeURIComponent(COUNTER_KEY)}`);
+      const j = await res.json();
+      return Number(j.value || 0);
+    }
+
+    // Pre-fill source from URL: ?src=tiktok
+    try {
+      const params = new URLSearchParams(location.search);
+      const src = params.get("src");
+      if (src && !srcEl.value) srcEl.value = src;
+    } catch (_) {}
+
+    // Load current count
+    (async () => {
+      try {
+        const c = await getCount();
+        elCount.textContent = String(c);
+      } catch (e) {
+        elCount.textContent = "—";
+      }
+    })();
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setMsg("");
+
+      // Honeypot: bots fill this
+      if (hp.value && hp.value.length > 0) {
+        setMsg("✅ You're in.");
+        return;
+      }
+
+      const email = (emailEl.value || "").trim().toLowerCase();
+      if (!email || !email.includes("@")) {
+        setMsg("Enter a real email.");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = "ADDING...";
+
+      try {
+        const newCount = await hit();
+        elCount.textContent = String(newCount);
+        setMsg("✅ You're on the list. Now join the Discord.");
+        // We intentionally don't store the email anywhere — this is for demand tracking.
+        emailEl.value = "";
+      } catch (err) {
+        setMsg("Couldn’t submit right now. Try again in 30 seconds.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "JOIN THE WAITLIST";
+      }
+    });
+  </script>
+</body>
+</html>
